@@ -637,10 +637,10 @@ cdef extern from "SDL_ttf.h":
     cdef void  TTF_SetFontOutline(TTF_Font *font, int outline)
 
     #Set and retrieve FreeType hinter settings */
-    ##define TTF_HINTING_NORMAL    0
-    int TTF_HINTING_LIGHT
-    ##define TTF_HINTING_MONO      2
-    ##define TTF_HINTING_NONE      3
+    int TTF_HINTING_NORMAL      # 0
+    int TTF_HINTING_LIGHT       # 1
+    int TTF_HINTING_MONO        # 2
+    int TTF_HINTING_NONE        # 3
     cdef int  TTF_GetFontHinting( TTF_Font *font)
     cdef void  TTF_SetFontHinting(TTF_Font *font, int hinting)
 

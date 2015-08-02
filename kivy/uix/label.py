@@ -222,7 +222,7 @@ from kivy.core.text import Label as CoreLabel
 from kivy.core.text.markup import MarkupLabel as CoreMarkupLabel
 from kivy.properties import StringProperty, OptionProperty, \
     NumericProperty, BooleanProperty, ReferenceListProperty, \
-    ListProperty, ObjectProperty, DictProperty
+    ListProperty, ObjectProperty, DictProperty, AliasProperty
 from kivy.utils import get_hex_from_color
 
 
@@ -764,4 +764,22 @@ class Label(Widget):
 
     :attr:`strip` is a :class:`~kivy.properties.BooleanProperty` and
     defaults to False.
+    '''
+
+    def _get_font_hinting(self):
+        if not _label:
+            return 'none'
+        return self._label.get_font_hinting()
+
+    def _set_font_hinitng(self, hinting):
+        if not self._label:
+            return
+        self._label.set_font_hinting(hinting)
+
+    font_hinting = AliasProperty('get_font_hinting', '_set_font_hinting')
+    '''Get/Set the hinting style for the currently selected font.
+
+    .. versionadded:: 1.9.1
+
+    :attr: `font_hinting` is a :class:`~kivy.properties.AliasProperty`.
     '''

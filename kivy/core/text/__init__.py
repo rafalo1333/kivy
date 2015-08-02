@@ -146,6 +146,12 @@ class LabelBase(object):
 
     _fonts_dirs = []
 
+    _hinting = {
+        'normal': 0,
+        'light': 1,
+        'mono': 2,
+        'none': 3}
+
     _texture_1px = None
 
     def __init__(
@@ -320,6 +326,24 @@ class LabelBase(object):
         .. versionadded:: 1.9.0
         '''
         return self.get_extents
+
+    def get_font_hinting(self):
+        '''Get the current font hinting used for rendering text.
+        Can be one of `none`, `normal`, `light`, `mono`.
+
+        .. versionadded:: 1.9.1
+        '''
+        return 'normal'
+
+    def set_font_hinting(self):
+        '''Set the current font hinting used for rendering text.
+        Can be one of `none`, `normal`, `light`, `mono`.
+
+        .. versionadded:: 1.9.1
+
+        This is currently only supported in the `SDL2` text provider.
+        '''
+        pass
 
     def _render_begin(self):
         pass

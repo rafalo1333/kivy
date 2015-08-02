@@ -7,6 +7,7 @@ __all__ = ('LabelPygame', )
 from kivy.compat import PY2
 from kivy.core.text import LabelBase
 from kivy.core.image import ImageData
+from kivy.logger import Logger
 
 try:
     import pygame
@@ -110,3 +111,12 @@ class LabelPygame(LabelBase):
         del self._pygame_surface
 
         return data
+
+    def get_font_hinting(self):
+        # no font_hinting API's in pygame
+        # default to None
+        return 'none'
+
+    def set_font_hinting(self, hinting):
+        # no support Throw warning
+        Logger.warning('text_pygame: not support for font_hinting')

@@ -12,6 +12,7 @@ except:
 from kivy.compat import text_type
 from kivy.core.text import LabelBase
 from kivy.core.image import ImageData
+from kivy.logger import Logger
 
 # used for fetching extends before creature image surface
 default_font = ImageFont.load_default()
@@ -60,3 +61,12 @@ class LabelPIL(LabelBase):
         del self._pil_draw
 
         return data
+
+    def get_font_hinting(self):
+        # no font_hinting API's in pil
+        # default to None
+        return 'none'
+
+    def set_font_hinting(self, hinting):
+        # no support Throw warning
+        Logger.warning('text_pil: not support for font_hinting')

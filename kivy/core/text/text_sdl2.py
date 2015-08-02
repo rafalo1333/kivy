@@ -9,11 +9,13 @@ __all__ = ('LabelSDL2', )
 
 from kivy.compat import PY2
 from kivy.core.text import LabelBase
-from kivy.core.text._text_sdl2 import (_SurfaceContainer, _get_extents,
-                                       _get_fontdescent, _get_fontascent)
+from kivy.core.text._text_sdl2 import (
+    _SurfaceContainer, _get_extents,  _get_fontdescent, _get_fontascent,
+    _get_font_hinting, _set_font_hinting)
 
 
 class LabelSDL2(LabelBase):
+
 
     def _get_font_id(self):
         if PY2:
@@ -47,4 +49,12 @@ class LabelSDL2(LabelBase):
 
     def _render_end(self):
         return self._surface.get_data()
+
+    def get_font_hinting(self):
+        _hinting = {v: k for k, v in LabelSDL2._hinting.items()}
+        return _hinting[self._get_font_hinting(self)]
+
+    def set_font_hinting(self, hinting):
+        hinting = LabelSDL2._hinting[hinting]
+        return self._set_font_hinting(self, hinting)
 
