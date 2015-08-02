@@ -772,6 +772,8 @@ class Label(Widget):
         return self._label.get_font_hinting()
 
     def _set_font_hinitng(self, hinting):
+        if hinting == self._get_font_hinting():
+            return
         if not self._label:
             return
         self._label.set_font_hinting(hinting)
